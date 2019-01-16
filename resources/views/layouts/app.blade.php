@@ -10,30 +10,29 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <title>@yield('title', 'LaraBBS') - Laravel 进阶教程</title>
-
   <!-- Styles -->
   <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
 </head>
 
 <body>
-  <div id="app" class="{{ route_class() }}-page">
+<div id="app" class="{{ route_class() }}-page">
 
-    @include('layouts._header')
+  @include('layouts._header')
 
-    <div class="container">
+  <div class="container">
 
-      @include('shared._messages')
+    @include('shared._messages')
 
-      @yield('content')
+    @yield('content')
 
-    </div>
-
-    @include('layouts._footer')
   </div>
 
-  <!-- Scripts -->
-  <script src="{{ mix('js/app.js') }}"></script>
+  @include('layouts._footer')
+</div>
+
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>
