@@ -13,10 +13,12 @@ class CategoriesController extends Controller
      * @param Category $category [in] 分类模型
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View [in] 渲染视图
      */
-    public function show(Category $category)
+    public function show(Category $category, Request $request, Topic $topic)
     {
         // 读取分类下的话题，并按每 20 条分页
-        $topics = Topic::where('category_id', $category->id)->paginate(20);
+        $topics = $topic->WithOrder($request->order)
+            ->where('category_id', $category->id)
+            ->paginate(20);
 
         return view('topics.index', compact('topics', 'category'));
     }
