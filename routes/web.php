@@ -35,9 +35,14 @@ Route::get('email/verify', 'Auth\VerificationController@show')->name('verificati
 Route::get('email/verify/{id}', 'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
 
-//个人中心路由
+// 个人中心路由
 Route::resource('users', 'UsersController', ['only' => ['show', 'update', 'edit']]);
 
+// 话题相关路由
 Route::resource('topics', 'TopicsController', ['only' => ['index', 'show', 'create', 'store', 'update', 'edit', 'destroy']]);
+Route::post('upload_image', 'TopicsController@uploadImage')->name('topics.upload_image');
 
+// 分类相关路由
 Route::resource('categories', 'CategoriesController', ['only' => 'show']);
+
+
