@@ -42,6 +42,12 @@ class Topic extends Model
         return $query->orderBy('created_at', 'desc');
     }
 
+    //一个帖子可以有很多回复
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     //重置 Topic URL
     public function link($params = [])
     {
