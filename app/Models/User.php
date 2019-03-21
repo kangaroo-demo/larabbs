@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-
+use Auth;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-use Auth;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -16,6 +16,8 @@ class User extends Authenticatable implements MustVerifyEmailContract
     use Notifiable {
         notify as protected laravelNotify;
     }
+
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
