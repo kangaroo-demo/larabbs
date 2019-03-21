@@ -48,3 +48,6 @@ Route::resource('categories', 'CategoriesController', ['only' => 'show']);
 
 // 回复相关路由
 Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]);
+
+// 通知相关路由
+Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
