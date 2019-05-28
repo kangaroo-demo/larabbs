@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PagesController@root')->name('root');
-
+Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
 //Auth::routes();
 
 // 用户身份验证相关的路由
