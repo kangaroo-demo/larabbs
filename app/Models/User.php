@@ -19,9 +19,11 @@ class User extends Authenticatable implements MustVerifyEmailContract
 
     use HasRoles;
 
-    //获取活跃用户
+    // 获取活跃用户
     use Traits\ActiveUserHelper;
 
+    // 获取最后登录时间
+    use Traits\LastActivedAtHelper;
     /**
      * The attributes that are mass assignable.
      *
