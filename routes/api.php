@@ -7,7 +7,7 @@ $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api'
 ], function ($api) {
-    //设置一分钟调用一次
+    // 设置使用频率
     $api->group([
         'middleware' => 'api.throttle',
         'limit' => config('api.rate_limits.sign.limit'),
@@ -17,5 +17,7 @@ $api->version('v1', [
         $api->post('verificationCodes', 'VerificationCodesController@store')->name('api.verificationCodes.store');
         // 用户注册
         $api->post('users', 'UsersController@store')->name('api.users.store');
+        // 图片验证码
+        $api->post('captchas', 'CaptchasController@store')->name('api.captchas.store');
     });;
 });
