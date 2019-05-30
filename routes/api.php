@@ -6,7 +6,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array' // DataArraySerializer 转为 ArraySerializer
+    'middleware' => ['serializer:array', 'bindings'] // DataArraySerializer 转为 ArraySerializer
 ], function ($api) {
     // 设置使用频率
     $api->group([
@@ -49,6 +49,8 @@ $api->version('v1', [
             $api->post('images', 'ImagesController@store')->name('api.images.store');
             // 发布话题
             $api->post('topics', 'TopicsController@store')->name('api.topics.store');
+            // 修改话题
+            $api->patch('topics/{topic}', 'TopicsController@update')->name('api.topics.update');
         });
     });
 });

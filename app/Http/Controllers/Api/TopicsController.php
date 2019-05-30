@@ -13,6 +13,7 @@ class TopicsController extends Controller
      * 发布话题
      * @param TopicRequest $request
      * @param Topic $topic
+     * @return \Dingo\Api\Http\Response
      */
     public function store(TopicRequest $request, Topic $topic)
     {
@@ -21,5 +22,20 @@ class TopicsController extends Controller
         $topic->save();
 
         return $this->response->item($topic, new TopicTransformer())->setStatusCode(201);
+    }
+
+    /**
+     * 编辑话题
+     * @param TopicRequest $request
+     * @param Topic $topic
+     * @return \Dingo\Api\Http\Response
+     * @throws \Illuminate\Auth\Access\AuthorizationException
+     */
+    public function update(TopicRequest $request, Topic $topic)
+    {
+        $this->authorize('update', $topic);
+
+        $topic->update($request->all());
+        return $this->response->item($topic, new TopicTransformer());
     }
 }
