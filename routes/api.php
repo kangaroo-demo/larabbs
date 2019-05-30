@@ -48,6 +48,8 @@ $api->version('v1', [
             $api->get('user', 'UsersController@me')->name('api.user.show');
             // 编辑登录用户信息
             $api->patch('user', 'UsersController@update')->name('api.user.update');
+            // 用户话题列表
+            $api->get('users/{user}/topics', 'TopicsController@userIndex')->name('api.users.topics.index');
             // 图片资源
             $api->post('images', 'ImagesController@store')->name('api.images.store');
             // 发布话题
@@ -56,8 +58,8 @@ $api->version('v1', [
             $api->patch('topics/{topic}', 'TopicsController@update')->name('api.topics.update');
             // 删除话题
             $api->delete('topics/{topic}', 'TopicsController@destroy')->name('api.topics.destroy');
-            // 用户话题列表
-            $api->get('users/{user}/topics', 'TopicsController@userIndex')->name('api.users.topics.index');
+            // 发布回复
+            $api->post('topics/{topic}/replies', 'RepliesController@store')->name('api.topics.replies.store');
         });
     });
 });
