@@ -8,8 +8,9 @@ use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Spatie\Permission\Traits\HasRoles;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable implements MustVerifyEmailContract
+class User extends Authenticatable implements MustVerifyEmailContract, JWTSubject
 {
     use MustVerifyEmailTrait;
 
@@ -116,5 +117,17 @@ class User extends Authenticatable implements MustVerifyEmailContract
         }
 
         $this->attributes['avatar'] = $path;
+    }
+
+    // JWT 返回用户ID
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    // 额外再 JWT 载荷中增加的自定义内容
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 }
