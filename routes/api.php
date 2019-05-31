@@ -6,7 +6,7 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => ['serializer:array', 'bindings'] // DataArraySerializer 转为 ArraySerializer
+    'middleware' => ['serializer:array', 'bindings', 'change-locale'] // DataArraySerializer 转为 ArraySerializer
 ], function ($api) {
     // 设置使用频率
     $api->group([
